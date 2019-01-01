@@ -15,4 +15,11 @@ class PersonTitle {
     String toString() {
         return name
     }
+
+    boolean bePartOf(PersonTitle aTitle) {
+        boolean isThis = aTitle.equals(this)
+        boolean isMember = subTitles.contains(aTitle)
+        return (isThis || isMember)
+    }
+
 }

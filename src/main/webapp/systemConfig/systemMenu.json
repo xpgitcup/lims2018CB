@@ -44,24 +44,24 @@
     "menuOrder": 0,
     "menuItems": [
       {
-        "menuContext": "基础类型",
-        "menuAction": "Operation4BasicType/index",
-        "menuDescription": "维护各种类型数据",
-        "upMenuItem": "基础数据",
+        "menuContext": "人员类型",
+        "menuAction": "Operation4PersonTitle/index",
+        "menuDescription": "维护人员的各种类型数据",
+        "upMenuItem": "基础维护",
         "menuOrder": 0
       },
       {
-        "menuContext": "基础数据",
-        "menuAction": "Operation4BasicData/index",
-        "menuDescription": "维护教师、学生、项目数据",
-        "upMenuItem": "基础数据",
+        "menuContext": "项目类型",
+        "menuAction": "Operation4ThingType/index",
+        "menuDescription": "维护各种项目的类型数据",
+        "upMenuItem": "基础维护",
         "menuOrder": 0
       },
       {
-        "menuContext": "基础管理",
+        "menuContext": "人员数据",
         "menuAction": "Operation4ManageA/index",
-        "menuDescription": "给事儿找人，给人找事儿",
-        "upMenuItem": "基础数据",
+        "menuDescription": "各种人员的基础数据",
+        "upMenuItem": "基础维护",
         "menuOrder": 0
       }
     ]
