@@ -2,20 +2,15 @@ package cn.edu.cup.lims
 
 import cn.edu.cup.common.DataExchangeInterface
 
-class Person implements DataExchangeInterface {
+class Thing implements DataExchangeInterface{
 
-    String code
     String name
 
-    static belongsTo = [personTitle: PersonTitle]
+    static belongsTo = [thingType: ThingType, progresses: Progress]
 
     static constraints = {
-        code(unique: true)
-        name()
-    }
+        name(unique: true)
 
-    String toString() {
-        return "${code}.${name}"
     }
 
     @Override
