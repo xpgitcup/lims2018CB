@@ -22,9 +22,10 @@ function countPerson(title) {
 
     switch (title) {
         case "教师":
-            total = ajaxCalculate("operation4Person/count?key=things4StudentToSelect");
+            total = ajaxCalculate("operation4Person/count?key=teacher");
             break;
         case "学生":
+            total = ajaxCalculate("operation4Person/count?key=student");
             break;
     }
 }
@@ -36,10 +37,10 @@ function loadPerson(title, page, pageSize) {
 
     switch (title) {
         case "教师":
-            ajaxRun("operation4Person/list" + params + "&key=things4StudentToSelect", 0, "list" + title + "Div");
+            ajaxRun("operation4Person/list" + params + "&key=teacher", 0, "list" + title + "Div");
             break;
         case "学生":
-            ajaxRun("operation4Person/list" + params + "&key=relatedTeams&thing=" + ids[0], 0, "list" + title + "Div");
+            ajaxRun("operation4Person/list" + params + "&key=student", 0, "list" + title + "Div");
             break;
     }
 }
