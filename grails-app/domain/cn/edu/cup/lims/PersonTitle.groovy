@@ -12,6 +12,12 @@ class PersonTitle {
         upTitle(nullable: true)
     }
 
+    static mapping = {
+        sort: 'id'
+        subTitles sort: 'id'  //这是排序的标准做法
+        persons sort: 'id'
+    }
+
     String toString() {
         return name
     }

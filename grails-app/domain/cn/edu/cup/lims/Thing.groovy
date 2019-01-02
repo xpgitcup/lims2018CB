@@ -6,7 +6,9 @@ class Thing implements DataExchangeInterface{
 
     String name
 
-    static belongsTo = [thingType: ThingType, progresses: Progress]
+    static belongsTo = [thingType: ThingType]
+
+    static hasMany = [progresses: Progress]
 
     static constraints = {
         name(unique: true)

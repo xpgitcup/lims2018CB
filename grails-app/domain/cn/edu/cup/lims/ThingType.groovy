@@ -14,6 +14,12 @@ class ThingType {
         relatedPersonTitle(nullable: true)
     }
 
+    static mapping = {
+        sort: 'id'
+        subTypes sort: 'id'  //这是排序的标准做法
+        things sort: 'id'
+    }
+
     String toString() {
         return "${name}"
     }

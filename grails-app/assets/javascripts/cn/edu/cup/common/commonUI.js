@@ -37,7 +37,8 @@ function addNewPaginationDiv(title, tab) {
 }
 
 function addNewTreeView(title, listDiv) {
-//树形显示页面
+    //树形显示页面
+    console.info("创建树形结构：" + title);
     var treeViewUl = $('<ul class="easyui-tree"></ul>');
     treeViewUl.attr('id', 'treeView' + title + 'Ul');
     treeViewUl.appendTo(listDiv)
@@ -86,7 +87,7 @@ function reflashDisplayTitleA(ulId, idList) {
         title = idList[index];
         currentId = readCookie("currentKey" + idList[index], 0)
         ids[index] = currentId
-        if (currentId>0) {
+        if (currentId > 0) {
             console.info(title + ":" + currentId)
             $("#currentKey" + idList[index]).html(currentId)
         } else {
@@ -155,6 +156,7 @@ function setupTabsWithDivAndPagination(tabsDiv, tabNameList) {
 * 设置树形结构显示的数据加载函数
 * */
 function setupDataExchangeTabsDiv4TreeView(tabsName, tabNameList, urlList) {
+    console.info("设置树形结构的数据调入函数...")
     // 当前页
     var defaultTab = tabNameList[0];
     var currentTab = readCookie("current" + tabsName, defaultTab);
@@ -179,7 +181,13 @@ function setupDataExchangeTabsDiv4TreeView(tabsName, tabNameList, urlList) {
 
     // 打开缺省的标签
     tabsDiv.tabs("select", currentTab);
-    //loadFirstData(currentTab, listFunction);
+    // 只有一个标签页的时候，无法触发--数据调入函数！
+    if (urlList.length < 2) {
+        console.info("只有一个标签页的时候，无法触发--数据调入函数！");
+        var title = tabNameList[0];
+        treeViewUl = $("#treeView" + title + "Ul");
+        treeViewUl.tree({url: urlList[0]});
+    }
 }
 
 /*

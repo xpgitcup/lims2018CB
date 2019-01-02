@@ -22,7 +22,7 @@
         </g:else>
     </g:else>
 <!-- end 实现可定制的布局 -->
-    <g:set var="entityName" value="PersonTitle"/>
+    <g:set var="entityName" value="Person"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>${entityName}维护</title>
     <asset:javascript src="cn/edu/cup/os4lims/${entityName}.js"/>
@@ -31,15 +31,7 @@
 <body>
 
 <div class="nav">
-    <ul id="operation4PersonTitleUl">
-        <li><a>当前</a></li>
-        <li><a id="currentTitle"></a></li>
-        <li><a>||</a></li>
-        <li><a id="createRootItem" href="javascript: createItem(0)">创建根节点</a></li>
-        <li><a id="createItem" href="#"></a></li>
-        <li><a id="editItem" href="#"></a></li>
-        <li><a id="deleteItem" href="#"></a></li>
-        <li><a id="exportMatterType" href="operation4PersonTitle/exportToJsonFile/0" class="save">导出文件</a></li>
+    <ul id="operation4PersonUl">
     </ul>
 </div>
 
@@ -47,7 +39,7 @@
     <div class="message" role="status">${flash.message}</div>
 </g:if>
 
-<div id="operation4PersonTitleDiv" class="easyui-tabs">
+<div id="operation4PersonDiv" class="easyui-tabs">
 </div>
 </body>
 </html>

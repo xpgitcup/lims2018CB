@@ -1,7 +1,5 @@
 package cn.edu.cup.system
 
-import groovy.xml.MarkupBuilder
-
 class SystemMenu {
 
     String menuContext = "缺省值"

@@ -59,8 +59,15 @@
       },
       {
         "menuContext": "人员数据",
-        "menuAction": "Operation4ManageA/index",
+        "menuAction": "Operation4Person/index",
         "menuDescription": "各种人员的基础数据",
+        "upMenuItem": "基础维护",
+        "menuOrder": 0
+      },
+      {
+        "menuContext": "项目数据",
+        "menuAction": "Operation4Thing/index",
+        "menuDescription": "各种项目的基础数据",
         "upMenuItem": "基础维护",
         "menuOrder": 0
       }
