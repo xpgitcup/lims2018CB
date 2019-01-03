@@ -1,11 +1,103 @@
 package cn.edu.cup.os4lims
 
 import cn.edu.cup.lims.Person
+import cn.edu.cup.lims.Student
+import cn.edu.cup.lims.Teacher
 import grails.converters.JSON
 import grails.validation.ValidationException
 
 class Operation4PersonController {
+
     def personService
+    def excelByJxlService
+    def commonService
+    def studentService
+    def teacherService
+
+    def importFromFile() {
+        println("导入...${params}")
+        if (!params.uploadedFile.empty) {
+            //处理文件上传
+            def destDir = commonService.webRootPath + "file4import"
+            params.destDir = destDir
+            println(destDir)
+            def sf = commonService.upload(params)
+            println("上传${sf}成功...")
+            def data = excelByJxlService.importExcelFileToDataTable(sf)
+            println("${data}")
+            if (data.size() > 0) {
+                def resultstr = ""
+                def r
+                data.eachWithIndex { e, i ->
+                    if (i > 0) {
+                        println("当前 ${e}")
+                        switch (params.key) {
+                            case "教师":
+                                def t = new Teacher()
+                                r = t.importFromDataSheet(e)
+                                if (r.result.empty) {
+                                    teacherService.save(r.teacher)
+                                }
+                                break
+                            case "学生":
+                                def s = new Student()
+                                r = s.importFromDataSheet(e)
+                                if (r.result.empty) {
+                                    studentService.save(s)
+                                }
+                                break
+                        }
+                        if (resultstr.empty) {
+                            resultstr += r.result
+                        } else {
+                            resultstr += ","
+                            resultstr += r.result
+                        }
+                    }
+                }
+                if (resultstr.empty) {
+                    flash.message = "导入${data.size()}个记录."
+                } else {
+                    flash.message += resultstr
+                }
+            }
+        } else {
+            flash.message = "空文件！"
+        }
+        redirect(action: "index")
+    }
+
+    def downloadTemplate() {
+        def key = params.key
+        def head = []
+        def fileName
+        switch (key) {
+            case "教师":
+                head.add(Teacher.dataSheetTitles())
+                fileName = commonService.webRootPath + "templates/teacher.xls"
+                break
+            case "学生":
+                head.add(Student.dataSheetTitles())
+                fileName = commonService.webRootPath + "templates/student.xls"
+                break
+        }
+        excelByJxlService.exportDataTable2ExcelFile(head, fileName)
+        params.downLoadFileName = fileName
+        commonService.downLoadFile(params)
+    }
+
+    def list() {
+        println("${params}")
+
+        def view = "list"
+        def objectList
+
+        if (request.xhr) {
+            render(template: view, model: [objectList: objectList])
+        } else {
+            respond objectList
+        }
+    }
 
     def count() {
         def count = 0

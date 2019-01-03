@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50722
 File Encoding         : 65001
 
-Date: 2019-01-02 16:22:40
+Date: 2019-01-03 11:10:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,7 +27,7 @@ CREATE TABLE `person_title` (
   UNIQUE KEY `UK_1so069qcrsvi8y4rqfwh0kdhu` (`name`),
   KEY `FKi6shdjfd8s0hk2fcmo37y9ou9` (`up_title_id`),
   CONSTRAINT `FKi6shdjfd8s0hk2fcmo37y9ou9` FOREIGN KEY (`up_title_id`) REFERENCES `person_title` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of person_title
@@ -47,3 +47,4 @@ INSERT INTO `person_title` VALUES ('12', '1', '2', '研究生');
 INSERT INTO `person_title` VALUES ('13', '0', '2', '本科生');
 INSERT INTO `person_title` VALUES ('14', '0', '12', '博士');
 INSERT INTO `person_title` VALUES ('15', '0', '12', '硕士');
+INSERT INTO `person_title` VALUES ('16', '0', '13', '本科');

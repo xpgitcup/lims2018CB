@@ -1,5 +1,5 @@
 var operation4PersonDiv;
-var tabList4Person = ["教师","学生"];
+var tabList4Person = ["教师", "学生", "专业"];
 var operation4PersonUl;
 
 $(function () {
@@ -16,9 +16,19 @@ $(function () {
 
 });
 
+function shiftDisplay(title) {
+    console.info("显示当前提示...")
+    $("#currentTemplate").html("下载[" + title + "]模板");
+    $("#currentTemplate").attr("href", "operation4Person/downloadTemplate?key=" + title);
+    $("#currentImport").html("导入[" + title + "]数据");
+    $("#importKey").attr("value", title);
+}
+
 function countPerson(title) {
     console.info("统计数据...");
     var ids = loadAllDisplayTitleIdA(tabList4Person);
+
+    shiftDisplay(title);
 
     switch (title) {
         case "教师":

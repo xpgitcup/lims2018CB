@@ -32,6 +32,31 @@
 
 <div class="nav">
     <ul id="operation4PersonUl">
+        <li>
+            <a id="currentTemplate" href="">下载模板</a>
+        </li>
+        <li><a>||</a></li>
+        <li><a id="currentImport">导入数据</a></li>
+        <li>
+            <g:uploadForm method="post" action="importFromFile">
+                <ul>
+                    <li>
+                        <input type="file" name="uploadedFile"/>
+                    </li>
+                    <li>
+                        <input type="hidden" name="key" value="" id="importKey"/>
+                    </li>
+                    <!--li>
+                        <input type="checkbox" name="autoUpdateType" checked="checked"/>
+                        <label>自动更新分类</label>
+                    </li-->
+                    <li>
+                        <input type="submit" value="ok">
+                    </li>
+                </ul>
+            </g:uploadForm>
+        </li>
+        <li><a>||</a></li>
     </ul>
 </div>
 
