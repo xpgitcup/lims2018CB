@@ -1,15 +1,15 @@
 package cn.edu.cup.os4lims
 
 import cn.edu.cup.lims.Person
+import cn.edu.cup.lims.Project
 import cn.edu.cup.lims.QueryStatement
-import cn.edu.cup.lims.Student
-import cn.edu.cup.lims.Teacher
+import cn.edu.cup.lims.Course
+import cn.edu.cup.lims.Thing
 import grails.converters.JSON
 import grails.validation.ValidationException
 
-class Operation4PersonController {
+class Operation4ThingController {
 
-    def personService
     def excelByJxlService
     def commonService
     def studentService
@@ -34,15 +34,15 @@ class Operation4PersonController {
                     if (i > 0) {
                         println("当前 ${e}")
                         switch (params.key) {
-                            case "教师":
-                                def t = new Teacher()
+                            case "科研":
+                                def t = new Project()
                                 r = t.importFromDataSheet(e)
                                 if (r.result.empty) {
                                     teacherService.save(r.teacher)
                                 }
                                 break
-                            case "学生":
-                                def s = new Student()
+                            case "教学":
+                                def s = new Course()
                                 r = s.importFromDataSheet(e)
                                 if (r.result.empty) {
                                     studentService.save(s)
@@ -75,11 +75,11 @@ class Operation4PersonController {
         def fileName
         switch (key) {
             case "教师":
-                head.add(Teacher.dataSheetTitles())
+                head.add(Project.dataSheetTitles())
                 fileName = commonService.webRootPath + "templates/teacher.xls"
                 break
             case "学生":
-                head.add(Student.dataSheetTitles())
+                head.add(Course.dataSheetTitles())
                 fileName = commonService.webRootPath + "templates/student.xls"
                 break
         }
@@ -147,22 +147,22 @@ class Operation4PersonController {
             return
         }
 
-        personService.delete(id)
+        teacherService.delete(id)
 
-        flash.message = message(code: 'default.deleted.message', args: [message(code: 'person.label', default: 'Person'), id])
+        flash.message = message(code: 'default.deleted.message', args: [message(code: 'teacher.label', default: 'Person'), id])
 
         redirect(action: "index")
     }
 
-    def save(Person person) {
-        if (person == null) {
+    def save(Person teacher) {
+        if (teacher == null) {
             notFound()
             return
         }
 
         try {
-            personService.save(person)
-            flash.message = message(code: 'default.created.message', args: [message(code: 'person.label', default: 'Person'), person.id])
+            teacherService.save(teacher)
+            flash.message = message(code: 'default.created.message', args: [message(code: 'teacher.label', default: 'Person'), teacher.id])
         } catch (ValidationException e) {
             flash.message = e.message
         }
@@ -170,7 +170,7 @@ class Operation4PersonController {
         redirect(action: "index")
     }
 
-    def update(Person person) {
+    def update(Person teacher) {
         if (person == null) {
             notFound()
             return
@@ -207,5 +207,5 @@ class Operation4PersonController {
         }
     }
 
-    def index() {}
+    def index() { }
 }

@@ -27,9 +27,7 @@ function shiftDisplay(title) {
 function countPerson(title) {
     console.info("统计数据...");
     var ids = loadAllDisplayTitleIdA(tabList4Person);
-
     shiftDisplay(title);
-
     switch (title) {
         case "教师":
             total = ajaxCalculate("operation4Person/count?key=teacher");
@@ -38,6 +36,7 @@ function countPerson(title) {
             total = ajaxCalculate("operation4Person/count?key=student");
             break;
     }
+    return total;
 }
 
 function loadPerson(title, page, pageSize) {
