@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50722
 File Encoding         : 65001
 
-Date: 2019-01-03 17:06:42
+Date: 2019-01-03 17:58:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,7 +26,7 @@ CREATE TABLE `query_statement` (
   `view_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_iejb2adhrl11w1nanxv8r9hql` (`key_string`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of query_statement
@@ -35,3 +35,7 @@ INSERT INTO `query_statement` VALUES ('1', '2', 'select count(*) from Teacher te
 INSERT INTO `query_statement` VALUES ('2', '1', 'from Teacher teacher', 'operation4Person.list.teacher', 'listTeacher');
 INSERT INTO `query_statement` VALUES ('3', '1', 'from Student student', 'operation4Person.list.student', 'listStudent');
 INSERT INTO `query_statement` VALUES ('4', '1', 'select count(*) from Student student', 'operation4Person.count.student', null);
+INSERT INTO `query_statement` VALUES ('5', '0', null, 'operation4Thing.list.科研', null);
+INSERT INTO `query_statement` VALUES ('6', '0', null, 'operation4Thing.count.科研', null);
+INSERT INTO `query_statement` VALUES ('7', '0', null, 'operation4Thing.list.教学', null);
+INSERT INTO `query_statement` VALUES ('8', '0', null, 'operation4Thing.count.教学', null);
