@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : sample
-Source Server Version : 50722
+Source Server Version : 50716
 Source Host           : localhost:3306
 Source Database       : lims2018bdb
 
 Target Server Type    : MYSQL
-Target Server Version : 50722
+Target Server Version : 50716
 File Encoding         : 65001
 
-Date: 2019-01-02 17:26:56
+Date: 2019-01-03 21:51:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -37,8 +37,8 @@ CREATE TABLE `thing_type` (
 -- ----------------------------
 INSERT INTO `thing_type` VALUES ('1', '1', null, '科研项目', null);
 INSERT INTO `thing_type` VALUES ('2', '0', null, '教学任务', null);
-INSERT INTO `thing_type` VALUES ('3', '0', null, '重大专项', '1');
+INSERT INTO `thing_type` VALUES ('3', '1', null, '国家科技重大专项', '1');
 INSERT INTO `thing_type` VALUES ('4', '0', null, '自然基金', '1');
 INSERT INTO `thing_type` VALUES ('5', '0', null, '省级基金', '1');
-INSERT INTO `thing_type` VALUES ('6', '0', null, '横向课题', '1');
+INSERT INTO `thing_type` VALUES ('6', '1', null, '横向项目', '1');
 INSERT INTO `thing_type` VALUES ('7', '0', null, '课程设计', '2');

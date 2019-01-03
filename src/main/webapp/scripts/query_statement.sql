@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : sample
-Source Server Version : 50722
+Source Server Version : 50716
 Source Host           : localhost:3306
 Source Database       : lims2018bdb
 
 Target Server Type    : MYSQL
-Target Server Version : 50722
+Target Server Version : 50716
 File Encoding         : 65001
 
-Date: 2019-01-03 17:58:18
+Date: 2019-01-03 22:29:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,7 +35,7 @@ INSERT INTO `query_statement` VALUES ('1', '2', 'select count(*) from Teacher te
 INSERT INTO `query_statement` VALUES ('2', '1', 'from Teacher teacher', 'operation4Person.list.teacher', 'listTeacher');
 INSERT INTO `query_statement` VALUES ('3', '1', 'from Student student', 'operation4Person.list.student', 'listStudent');
 INSERT INTO `query_statement` VALUES ('4', '1', 'select count(*) from Student student', 'operation4Person.count.student', null);
-INSERT INTO `query_statement` VALUES ('5', '0', null, 'operation4Thing.list.科研', null);
-INSERT INTO `query_statement` VALUES ('6', '0', null, 'operation4Thing.count.科研', null);
-INSERT INTO `query_statement` VALUES ('7', '0', null, 'operation4Thing.list.教学', null);
-INSERT INTO `query_statement` VALUES ('8', '0', null, 'operation4Thing.count.教学', null);
+INSERT INTO `query_statement` VALUES ('5', '2', 'from Project project', 'operation4Thing.list.科研', 'listProject');
+INSERT INTO `query_statement` VALUES ('6', '1', 'select count(*) from Project project', 'operation4Thing.count.科研', null);
+INSERT INTO `query_statement` VALUES ('7', '2', 'from Course course', 'operation4Thing.list.教学', 'listCourse');
+INSERT INTO `query_statement` VALUES ('8', '2', 'select count(*) from Course course', 'operation4Thing.count.教学', null);

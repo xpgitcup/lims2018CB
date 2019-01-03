@@ -12,8 +12,8 @@ class Operation4ThingController {
 
     def excelByJxlService
     def commonService
-    def studentService
-    def teacherService
+    def courseService
+    def projectService
     def queryStatementService
 
     def importFromFile() {
@@ -38,14 +38,14 @@ class Operation4ThingController {
                                 def t = new Project()
                                 r = t.importFromDataSheet(e)
                                 if (r.result.empty) {
-                                    teacherService.save(r.teacher)
+                                    projectService.save(r.project)
                                 }
                                 break
                             case "教学":
                                 def s = new Course()
                                 r = s.importFromDataSheet(e)
                                 if (r.result.empty) {
-                                    studentService.save(s)
+                                    courseService.save(s)
                                 }
                                 break
                         }
@@ -74,13 +74,13 @@ class Operation4ThingController {
         def head = []
         def fileName
         switch (key) {
-            case "教师":
+            case "科研":
                 head.add(Project.dataSheetTitles())
-                fileName = commonService.webRootPath + "templates/teacher.xls"
+                fileName = commonService.webRootPath + "templates/project.xls"
                 break
-            case "学生":
+            case "教学":
                 head.add(Course.dataSheetTitles())
-                fileName = commonService.webRootPath + "templates/student.xls"
+                fileName = commonService.webRootPath + "templates/course.xls"
                 break
         }
         excelByJxlService.exportDataTable2ExcelFile(head, fileName)
@@ -147,15 +147,15 @@ class Operation4ThingController {
             return
         }
 
-        teacherService.delete(id)
+        projectService.delete(id)
 
-        flash.message = message(code: 'default.deleted.message', args: [message(code: 'teacher.label', default: 'Person'), id])
+        flash.message = message(code: 'default.deleted.message', args: [message(code: 'project.label', default: 'Person'), id])
 
         redirect(action: "index")
     }
 
-    def save(Person teacher) {
-        if (teacher == null) {
+    def save(Person project) {
+        if (project == null) {
             notFound()
             return
         }

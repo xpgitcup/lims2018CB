@@ -15,6 +15,7 @@ class Project extends Thing {
         startDate(nullable: true)
         duration(nullable: true)
     }
+
     @Override
     static List<String> dataSheetTitles() {
         def head = ["名称", "甲方公司", "项目类型", "起始时间", "持续时长(年)"]
