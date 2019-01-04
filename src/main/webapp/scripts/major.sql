@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50722
 File Encoding         : 65001
 
-Date: 2019-01-03 11:11:03
+Date: 2019-01-04 09:34:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,9 +23,10 @@ CREATE TABLE `major` (
   `version` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of major
 -- ----------------------------
 INSERT INTO `major` VALUES ('1', '0', '油气储运工程');
+INSERT INTO `major` VALUES ('2', '0', '石油与天然气工程');

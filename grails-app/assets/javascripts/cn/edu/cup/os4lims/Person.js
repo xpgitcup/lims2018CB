@@ -28,14 +28,7 @@ function countPerson(title) {
     console.info("统计数据...");
     var ids = loadAllDisplayTitleIdA(tabList4Person);
     shiftDisplay(title);
-    switch (title) {
-        case "教师":
-            total = ajaxCalculate("operation4Person/count?key=teacher");
-            break;
-        case "学生":
-            total = ajaxCalculate("operation4Person/count?key=student");
-            break;
-    }
+    total = ajaxCalculate("operation4Person/count?key=" + title);
     return total;
 }
 
@@ -43,13 +36,5 @@ function loadPerson(title, page, pageSize) {
     console.info("调入数据..." + title);
     var params = getParams(page, pageSize);    //getParams必须是放在最最前面！！
     var ids = reflashDisplayTitleA(operation4PersonUl, tabList4Person);
-
-    switch (title) {
-        case "教师":
-            ajaxRun("operation4Person/list" + params + "&key=teacher", 0, "list" + title + "Div");
-            break;
-        case "学生":
-            ajaxRun("operation4Person/list" + params + "&key=student", 0, "list" + title + "Div");
-            break;
-    }
+    ajaxRun("operation4Person/list" + params + "&key=" + title, 0, "list" + title + "Div");
 }

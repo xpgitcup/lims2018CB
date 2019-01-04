@@ -7,6 +7,8 @@ class Teacher extends Person {
         name()
     }
 
+    static hasMany = [students: Student]
+
     @Override
     static List<String> dataSheetTitles() {
         def head = ["姓名", "工号", "职称"]
