@@ -48,7 +48,21 @@
     <g:form resource="${this.queryStatement}" method="PUT">
         <g:hiddenField name="version" value="${this.queryStatement?.version}"/>
         <fieldset class="form">
-            <f:all bean="queryStatement"/>
+            <!--f:all bean="queryStatement"/-->
+            <table>
+            <tr>
+                <td>关键字</td>
+                <td><g:textField name="keyString" value="${queryStatement.keyString}"></g:textField></td>
+            </tr>
+            <tr>
+                <td>查询语句</td>
+                <td><g:textField name="hql" value="${queryStatement.hql}" style="width: 80em"></g:textField></td>
+            </tr>
+            <tr>
+                <td>视图</td>
+                <td><g:textField name="viewName" value="${queryStatement.viewName}"></g:textField></td>
+            </tr>
+            </table>
         </fieldset>
         <fieldset class="buttons">
             <input class="save" type="submit"
