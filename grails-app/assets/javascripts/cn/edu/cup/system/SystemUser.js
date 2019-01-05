@@ -26,7 +26,8 @@ $(function(){
         total: totalSystemUser,
         showPageList: true,
         displayMsg: '',
-        layout: ['first', 'prev', 'links', 'next', 'last'],
+        //layout: ['first', 'prev', 'links', 'next', 'last'],
+        layout: ['first', 'prev', 'next', 'last'],
         //翻页函数
         onSelectPage:function(pageNumber, pageSize){
             listSystemUser(pageNumber, pageSize);

@@ -135,14 +135,14 @@
     "menuItems": [
       {
         "menuContext": "课题任务",
-        "menuAction": "operation4StudentTeamB/index",
+        "menuAction": "operation4TeamManageA/index",
         "menuDescription": "与系统中的用户对话",
         "upMenuItem": "学生服务",
         "menuOrder": 0
       },
       {
         "menuContext": "工作汇报",
-        "menuAction": "operation4CommonDataA/index?dataKey=3&function=工作汇报",
+        "menuAction": "operation4Student/index",
         "menuDescription": "上传每周工作汇报",
         "upMenuItem": "学生服务",
         "menuOrder": 0

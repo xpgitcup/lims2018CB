@@ -101,15 +101,18 @@ class InitService {
         systemMenuService.save(m0)
         //----------------------------------------------------------------------------------------------------------
         //创建正对各个域类控制器的菜单
-        domains.sort()
-        domains.each() { e ->
+        domains.sort { a, b ->
+            return a.name.compareTo(b.name)
+        }
+        println("${domains}")
+        domains.eachWithIndex { e, i ->
             def m01 = new SystemMenu(
                     menuContext: "${e.name}",
                     menuAction: "${e.name}/index",
                     menuDescription: "对${e.name}属性进行维护",
                     upMenuItem: m0,
                     roleAttribute: "底层管理",
-                    menuOrder: 0
+                    menuOrder: i
             )
             //m01.save(true)
             systemMenuService.save(m01)
@@ -176,7 +179,7 @@ class InitService {
             println("测试性的属性...")
             def attributeA = new SystemAttribute(name: "系统操作权限")
             attributeA.save(true)
-            SystemMenu.findAllByUpMenuItemIsNull().each { e->
+            SystemMenu.findAllByUpMenuItemIsNull().each { e ->
                 def aa = new SystemAttribute(name: e.menuContext, upAttribute: attributeA)
                 aa.save(true)
             }
@@ -186,6 +189,7 @@ class InitService {
     /*
     * 处理ocnfig.json文件
     * */
+
     private void processConfigFile(ServletContext servletContext) {
         def webRootDir = servletContext.getRealPath("/")
         def configFileName = "${webRootDir}config.json"

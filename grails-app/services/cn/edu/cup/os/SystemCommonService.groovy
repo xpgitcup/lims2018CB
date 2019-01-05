@@ -1,5 +1,6 @@
 package cn.edu.cup.os
 
+import cn.edu.cup.lims.Person
 import cn.edu.cup.system.SystemAttribute
 import cn.edu.cup.system.SystemLog
 import cn.edu.cup.system.SystemMenu
@@ -12,7 +13,7 @@ class SystemCommonService {
     def systemUserService
 
     def getRealName(SystemUser systemUser) {
-        def user = null //Person.findByCode(systemUser.userName)
+        def user = Person.findByCode(systemUser.userName)
         return user
     }
 
