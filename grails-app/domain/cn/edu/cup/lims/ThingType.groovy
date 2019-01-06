@@ -1,5 +1,8 @@
 package cn.edu.cup.lims
 
+/*
+*  具体的任务（科研项目、教学任务--的分类都应该是叶子）
+* */
 class ThingType {
 
     String name
@@ -22,6 +25,11 @@ class ThingType {
 
     String toString() {
         return "${name}"
+    }
+
+    List relatedThings(ThingType thingType) {
+        def thingList = []
+        return thingList
     }
 
     boolean bePartOf(ThingType athingType) {
