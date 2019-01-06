@@ -15,6 +15,10 @@ class Thing implements DataExchangeInterface{
 
     }
 
+    String toString() {
+        return "${name}"
+    }
+
     @Override
     List<String> dataSheetTitles() {
         return null

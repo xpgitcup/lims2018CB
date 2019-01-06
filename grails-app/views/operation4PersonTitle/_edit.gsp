@@ -41,6 +41,7 @@
         <fieldset class="buttons">
             <input class="save" type="submit"
                    value="${message(code: 'default.button.update.label', default: 'Update')}"/>
+            <a href="operation4PersonTitle/index">返回</a>
         </fieldset>
     </g:form>
 </div>
