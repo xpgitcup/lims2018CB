@@ -27,9 +27,14 @@ class ThingType {
         return "${name}"
     }
 
-    List relatedThings(ThingType thingType) {
-        def thingList = []
-        return thingList
+    List relatedThingTypeList() {
+        def list = []
+        if (subTypes) {
+            subTypes.each { e->
+                list.addAll(e.relatedThingTypeList())
+            }
+        }
+        return list
     }
 
     boolean bePartOf(ThingType athingType) {
