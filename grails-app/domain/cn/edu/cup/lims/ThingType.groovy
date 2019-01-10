@@ -33,6 +33,8 @@ class ThingType {
             subTypes.each { e->
                 list.addAll(e.relatedThingTypeList())
             }
+        } else {
+            list.add(this)
         }
         return list
     }

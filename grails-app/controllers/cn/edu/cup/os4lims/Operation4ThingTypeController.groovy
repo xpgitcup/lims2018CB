@@ -10,6 +10,17 @@ class Operation4ThingTypeController {
     def treeViewService
     def thingTypeService
 
+    def show(Long id) {
+        def thingType = thingTypeService.get(id)
+        println("show ${thingType}")
+        def view = "show"
+        if (request.xhr) {
+            render(template: view, model: [thingType: thingType])
+        } else {
+            respond thingType
+        }
+    }
+
     def delete(Long id) {
         if (id == null) {
             notFound()

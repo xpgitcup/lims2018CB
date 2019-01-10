@@ -11,6 +11,11 @@ $(function () {
     setupDataExchangeTabsDiv4TreeView("operation4ThingTypeDiv", tabList4ThingType, urlList);
     setupPaginationParams4TreeView(tabList4ThingType, countBasicType, urlList);
     setupTreeviewNodeSelectFunction(tabList4ThingType, changeUpNode)
+
+    $("#pagination项目类型Div").pagination({
+        showPageList: false,
+        displayMsg:""
+    })
 });
 
 function changeUpNode(node) {
@@ -22,6 +27,7 @@ function changeUpNode(node) {
     $("#deleteItem").attr('href', 'operation4ThingType/delete/' + node.attributes[0]);
     $("#deleteItem").html("删除" + node.attributes[0] + '节点');
     $("#currentTitle").html(node.text);
+    ajaxRun("operation4ThingType/show", node.attributes[0], "showInformationDiv");
 }
 
 function countBasicType(title) {
