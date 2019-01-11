@@ -4,14 +4,12 @@ class PersonTitle {
 
     String name
     PersonTitle upTitle
-    ThingType relatedThingType
 
     static hasMany = [subTitles: PersonTitle, persons: Person]
 
     static constraints = {
         name(unique: true)
         upTitle(nullable: true)
-        relatedThingType(nullable: true)
     }
 
     static mapping = {
@@ -22,14 +20,6 @@ class PersonTitle {
 
     String toString() {
         return name
-    }
-
-    def beforeInsert() {
-        if (relatedThingType == null) {
-            if (upTitle) {
-                relatedThingType = upTitle.relatedThingType
-            }
-        }
     }
 
     boolean bePartOf(PersonTitle aTitle) {

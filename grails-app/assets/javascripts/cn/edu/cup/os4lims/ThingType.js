@@ -12,10 +12,12 @@ $(function () {
     setupPaginationParams4TreeView(tabList4ThingType, countBasicType, urlList);
     setupTreeviewNodeSelectFunction(tabList4ThingType, changeUpNode)
 
+    /*
     $("#pagination项目类型Div").pagination({
         showPageList: false,
         displayMsg:""
     })
+    */
 });
 
 function changeUpNode(node) {

@@ -65,6 +65,13 @@
         "menuOrder": 0
       },
       {
+        "menuContext": "任务圈维护",
+        "menuAction": "Operation4ThingTypeAndPersonTitle/index",
+        "menuDescription": "任务与人员类别之间建立联系",
+        "upMenuItem": "基础维护",
+        "menuOrder": 0
+      },
+      {
         "menuContext": "人员数据",
         "menuAction": "Operation4Person/index",
         "menuDescription": "各种人员的基础数据",

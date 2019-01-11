@@ -7,14 +7,12 @@ class ThingType {
 
     String name
     ThingType upType
-    PersonTitle relatedPersonTitle
 
     static hasMany = [subTypes: ThingType, things: Thing]
 
     static constraints = {
         name(unique: true)
         upType(nullable: true)
-        relatedPersonTitle(nullable: true)
     }
 
     static mapping = {

@@ -47,14 +47,8 @@
     <div class="message" role="status">${flash.message}</div>
 </g:if>
 
-<div class="container-fluid">
-    <div class="col-md-7">
-        <div id="operation4ThingTypeDiv" class="easyui-tabs">
-        </div>
-    </div>
-    <div class="col-md-5">
-        <div id="showInformationDiv"></div>
-    </div>
+<div id="operation4ThingTypeDiv" class="easyui-tabs">
 </div>
+<div id="showInformationDiv"></div>
 </body>
 </html>
