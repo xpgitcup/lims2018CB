@@ -62,7 +62,11 @@ class Student extends Person {
                                 gradeName = g
                                 major = m
                             } else {
-                                result += "${dataSheet[5]} 找不到这个导师！"
+                                name = n
+                                code = c
+                                personTitle = tt
+                                gradeName = g
+                                major = m
                             }
                     }
                 } else {
