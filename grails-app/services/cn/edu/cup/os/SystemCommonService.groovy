@@ -1,6 +1,7 @@
 package cn.edu.cup.os
 
 import cn.edu.cup.lims.Person
+import cn.edu.cup.lims.PersonTitle
 import cn.edu.cup.system.SystemAttribute
 import cn.edu.cup.system.SystemLog
 import cn.edu.cup.system.SystemMenu
@@ -29,11 +30,21 @@ class SystemCommonService {
 
     boolean addPersonToUser(person) {
         def role = SystemAttribute.findByName("系统操作权限")
-        switch (person.personTitle.name) {
-            case "教师":
+        /*
+        def teacherTitle = PersonTitle.findByName("教师")
+        def studentTitle = PersonTitle.findByName("学生")
+        if (person.bePartOf(teacherTitle)) {
+            role = SystemAttribute.findByName("教师权限")
+        }
+        if (person.bePartOf(studentTitle)) {
+            role = SystemAttribute.findByName("学生权限")
+        }
+        */
+        switch (person.class.simpleName) {
+            case "Teacher":
                 role = SystemAttribute.findByName("教师权限")
                 break
-            case "本科":
+            case "Student":
                 role = SystemAttribute.findByName("学生权限")
                 break
         }
@@ -43,7 +54,7 @@ class SystemCommonService {
                     userName: person.code,
                     password: "12345678",
                     roleAttribute: role,
-                    appendAttribute: "${app}=${person.code}"
+                    appendAttribute: "${app}=${person.name}"
             )
             systemUserService.save(u)
             return true
