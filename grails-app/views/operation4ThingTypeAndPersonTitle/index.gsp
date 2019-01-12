@@ -34,8 +34,6 @@
     <ul id="operation4ThingTypeAndPersonTitleUl">
         <li>
             <g:form controller="operation4ThingTypeAndPersonTitle" action="save">
-                <label>名称</label>
-                <g:textField name="name" value="" id="circleName"/>
                 <label>任务</label>
                 <g:textField name="thingType" value="" id="thingType"/>
                 <label>人员</label>
@@ -51,11 +49,6 @@
 </g:if>
 
 <div id="operation4ThingTypeAndPersonTitleDiv" class="easyui-panel">
-    <f:table collection="${thingTypeCircleList}" />
-
-    <div class="paginationGrails">
-        <g:paginate total="${thingTypeCircleCount ?: 0}" />
-    </div>
 </div>
 
 <div id="edit4ThingTypeAndPersonTitleDiv">

@@ -109,6 +109,16 @@ function reflashDisplayTitle(idList) {
 }
 
 /*
+* 设置--单一页面的分页显示
+* */
+
+function setupPanelDivAndPagination(panelDiv, panelTitle) {
+    console.info("设置单一页面的分页显示...");
+    addNewListDiv(panelTitle, panelDiv);
+    addNewPaginationDiv(panelTitle, panelDiv);
+}
+
+/*
 * 设置标签--分页--树形结构显示
 * */
 function setupTabsWithDivAndPaginationAndTreeview(tabsDiv, tabNameList) {
@@ -256,31 +266,6 @@ function configPaginationParams4TabPage(title, firstPageNumber, aCountFunction, 
 }
 
 /*
-* 这样设置后出现很诡异的效果--？？？？？？？？？？？？
-* */
-function setupPaginationParams4TabPage(tabNameList, aCountFunction, aLoadFunction) {
-    var title;
-    var total = 0;
-    var countFunction = eval(aCountFunction);
-    var loadFunction = eval(aLoadFunction);
-    var paginationDiv
-    for (x in tabNameList) {
-        title = tabNameList[x];
-        total = countFunction(title)
-        paginationDiv = $("#pagination" + title + "Div")
-        paginationDiv.pagination({
-            pageSize: pageSize,
-            total: total,
-            onSelectPage: function (pageNumber, pageSize) {
-                console.info("setupPaginationParams4TabPage: " + title)
-                loadFunction(title, pageNumber, pageSize);
-            }
-        })
-    }
-}
-
-
-/*
 * 设置标签控件的切换------每次选择一个标签页，需要重新设置翻页参数---否则会有诡异的结果出现
 * */
 function setupTabPageParams(tabsName, aCountFunction, aLoadFunction) {
@@ -306,6 +291,9 @@ function setupTabPageParams(tabsName, aCountFunction, aLoadFunction) {
 
     // 打开缺省的标签
     tabsDiv.tabs("select", currentTab);
+    if (tabsDiv.tabs("tabs").length < 2) {
+        console.info("只有一个标签啊...")  //好像不成功！
+    }
 }
 
 /*

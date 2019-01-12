@@ -1,11 +1,31 @@
 var operation4ThingTypeAndPersonTitleDiv
-var tabList4ThingTypeAndPersonTitle = ["任务圈"];
+var tabList4ThingTypeAndPersonTitle = "任务圈";
 var thingTypeTree;
 var personTitleTree;
+var paginationDiv
 
 $(function () {
     console.info("任务圈管理...");
-    //静态设置
+
+    //静态设置--列表显示
+    operation4ThingTypeAndPersonTitleDiv = $("#operation4ThingTypeAndPersonTitleDiv");
+    setupPanelDivAndPagination(operation4ThingTypeAndPersonTitleDiv, tabList4ThingTypeAndPersonTitle);
+    var cPageNumber = readCookie("currentPage" + tabList4ThingTypeAndPersonTitle, 1)
+    var total = countThingTypeAndPersonTitle();
+    $("#pagination" + tabList4ThingTypeAndPersonTitle + "Div").pagination({
+        pageSize: pageSize,
+        total: total,
+        pageNumber: cPageNumber,
+        onSelectPage: function (pageNumber, pageSize) {
+            console.info("setupPaginationParams4TabPage: " + title)
+            $.cookie("currentPage" + tabList4ThingTypeAndPersonTitle, pageNumber);
+            loadThingTypeAndPersonTitle(pageNumber, pageSize);
+        }
+    })
+
+    loadThingTypeAndPersonTitle(cPageNumber, pageSize);
+
+    //静态设置--树形结构
     thingTypeTree = $("#thingTypeTree");
     personTitleTree = $("#personTitleTree");
 
@@ -36,29 +56,13 @@ function changeUpNode(node) {
     ajaxRun("operation4ThingTypeAndPersonTitle/show", node.attributes[0], "showInformationDiv");
 }
 
-function countBasicType(title) {
-    console.info("统计基础数据..." + title);
-    showCurrent(title);
+function countThingTypeAndPersonTitle() {
+    console.info("统计基础数据...");
     var total = 0;
-    switch (title) {
-        case "项目类型":
-            total = ajaxCalculate("operation4ThingTypeAndPersonTitle/count");
-            break
-    }
+    total = ajaxCalculate("operation4ThingTypeAndPersonTitle/count");
     return total;
 }
 
-function showCurrent(title) {
-    $("#currentTitle").html("请选择...");
-}
-
-function editItem(id) {
-    var title = getCurrentTabTitle(operation4ThingTypeAndPersonTitleDiv);
-    ajaxRun("operation4ThingTypeAndPersonTitle/edit", id, "list" + title + "Div");
-}
-
-function createItem(id) {
-    var title = getCurrentTabTitle(operation4ThingTypeAndPersonTitleDiv);
-    //ajaxRun("operation4ThingTypeAndPersonTitle/create/?upTitle=" + id, 0, "list" + title + "Div");
-    ajaxRun("operation4ThingTypeAndPersonTitle/create", id, "list" + title + "Div");
+function loadThingTypeAndPersonTitle() {
+    ajaxRun("operation4ThingTypeAndPersonTitle/list", 0, "list" + tabList4ThingTypeAndPersonTitle + "Div");
 }
