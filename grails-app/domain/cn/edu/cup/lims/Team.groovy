@@ -5,7 +5,7 @@ class Team {
     Person leader
     Thing thing
 
-    static hasMany = [members: Person]
+    static hasMany = [members: Person, progresses: Progress]
 
     static constraints = {
         leader()

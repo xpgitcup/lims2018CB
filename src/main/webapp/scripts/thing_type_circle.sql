@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50722
 File Encoding         : 65001
 
-Date: 2019-01-12 17:39:31
+Date: 2019-01-19 11:09:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,7 +28,7 @@ CREATE TABLE `thing_type_circle` (
   KEY `FKssm8med14m6dsxrdrx28o1qfo` (`thing_type_id`),
   CONSTRAINT `FK1dbela98vlo3e0iyjuamvulvj` FOREIGN KEY (`person_title_id`) REFERENCES `person_title` (`id`),
   CONSTRAINT `FKssm8med14m6dsxrdrx28o1qfo` FOREIGN KEY (`thing_type_id`) REFERENCES `thing_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of thing_type_circle
@@ -36,3 +36,4 @@ CREATE TABLE `thing_type_circle` (
 INSERT INTO `thing_type_circle` VALUES ('1', '0', '2', '2');
 INSERT INTO `thing_type_circle` VALUES ('2', '0', '14', '2');
 INSERT INTO `thing_type_circle` VALUES ('3', '0', '15', '11');
+INSERT INTO `thing_type_circle` VALUES ('4', '0', '2', '11');

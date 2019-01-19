@@ -59,6 +59,10 @@
                 <td><g:textField name="hql" value="${queryStatement.hql}" style="width: 80em"></g:textField></td>
             </tr>
             <tr>
+                <td>参数</td>
+                <td><g:textField name="keys" value="${queryStatement.keys}" style="width: 80em"></g:textField></td>
+            </tr>
+            <tr>
                 <td>视图</td>
                 <td><g:textField name="viewName" value="${queryStatement.viewName}"></g:textField></td>
             </tr>

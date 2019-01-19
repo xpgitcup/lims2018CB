@@ -9,7 +9,7 @@ class Progress {
     Person contributor
     Date regDate = new Date()
 
-    static belongsTo = [thing: Thing]
+    static belongsTo = [team: Team]
 
     static constraints = {
         prevProgress(nullable: true)
