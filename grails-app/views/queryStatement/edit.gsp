@@ -60,7 +60,7 @@
             </tr>
             <tr>
                 <td>参数</td>
-                <td><g:textField name="keys" value="${queryStatement.keys}" style="width: 80em"></g:textField></td>
+                <td><g:textField name="paramsList" value="${queryStatement.paramsList}" style="width: 80em"></g:textField></td>
             </tr>
             <tr>
                 <td>视图</td>
