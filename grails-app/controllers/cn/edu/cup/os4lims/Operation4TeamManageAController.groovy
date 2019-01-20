@@ -9,18 +9,38 @@ import grails.converters.JSON
 
 class Operation4TeamManageAController {
 
-    def queryStatementService
+    def commonQueryService
+
+    def list() {
+        println("${params}")
+        def currentTitle = PersonTitle.get(session.realTitle)
+        def list = ThingTypeCircle.allRelatedThingTypes(currentTitle)
+        println("当前身份：${currentTitle}， 任务类型： ${list}")
+        params.list = list
+        def (String view, List objectList) = commonQueryService.listFunction(params)
+        if (request.xhr) {
+            render(template: view, model: [objectList: objectList])
+        } else {
+            respond objectList
+        }
+    }
 
     /*
     * 根据身份确定事情
     * 相关任务类型，如果任务类型不是叶子，继续向下搜索到叶子
     * */
+
     def count() {
         def currentTitle = PersonTitle.get(session.realTitle)
         def list = ThingTypeCircle.allRelatedThingTypes(currentTitle)
         println("当前身份：${currentTitle}， 任务类型： ${list}")
         params.list = list
-        def count = countFunction(params)
+        def count = commonQueryService.countFunction(params)
+        println("统计结果：${count}")
+        if (count[0] < 0) {
+            flash.message = "功能尚未实现....."
+            count = 0
+        }
         def result = [count: count]
         if (request.xhr) {
             render result as JSON
@@ -29,19 +49,5 @@ class Operation4TeamManageAController {
         }
     }
 
-    private Object countFunction(params) {
-        def keyString = "${params.controller}.${params.action}.${params.key}"
-        def count = 0
-        def hql = QueryStatement.findByKeyString(keyString)
-        if (hql) {
-            count = Thing.executeQuery(hql.hql, params)
-        } else {
-            def nq = new QueryStatement(keyString: keyString);
-            queryStatementService.save(nq)
-            flash.message = "功能尚未实现!"
-        }
-        count
-    }
-
-    def index() { }
+    def index() {}
 }

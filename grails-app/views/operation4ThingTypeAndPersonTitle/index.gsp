@@ -54,10 +54,14 @@
 <div id="edit4ThingTypeAndPersonTitleDiv">
     <div class="container-fluid">
         <div class="col-md-6">
+            <h1>任务类型</h1>
+            <hr>
             <ul class="easyui-tree" id="thingTypeTree"></ul>
         </div>
 
         <div class="col-md-6">
+            <h1>人员类型</h1>
+            <hr>
             <ul class="easyui-tree" id="personTitleTree"></ul>
         </div>
     </div>
