@@ -159,6 +159,13 @@ function setupTabsWithDivAndPagination(tabsDiv, tabNameList) {
         var tab = tabsDiv.tabs('getSelected');
         var listDiv = addNewListDiv(title, tab);
         var paginationDiv = addNewPaginationDiv(title, tab);
+
+        if (tabNameList.length < 2) {
+            tabsDiv.tabs('add', {
+                title: "虚拟",
+                closable: true
+            })
+        }
     }
 }
 
@@ -289,11 +296,18 @@ function setupTabPageParams(tabsName, aCountFunction, aLoadFunction) {
         }
     })
 
-    // 打开缺省的标签
-    tabsDiv.tabs("select", currentTab);
     if (tabsDiv.tabs("tabs").length < 2) {
         console.info("只有一个标签啊...")  //好像不成功！
+        //var cPage = readCookie("currentPage" + defaultTab, 1);
+        //loadFunction(defaultTab, cPage, pageSize);
     }
+
+    // 打开缺省的标签
+    tabsDiv.tabs("select", currentTab);
+
+    var tab = tabsDiv.tabs('getTab', "虚拟").panel('options').tab; //title替换成tab的title
+    //tab.show();  // 显示
+    tab.hide(); // 隐藏
 }
 
 /*

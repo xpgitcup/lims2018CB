@@ -1,3 +1,4 @@
+<%@ page import="cn.edu.cup.lims.PersonTitle" %>
 <!doctype html>
 <%
     String path = request.getContextPath();
@@ -103,7 +104,7 @@
             <!-- 显示当前用户 -->
                 <g:if test="${session.systemUser}">
                     <li>${session.realName}</li>
-                    <li><div id="currentPersonId">${session.realTitle}.${session.realId}</div></li>
+                    <li><div id="currentPersonId">${cn.edu.cup.lims.PersonTitle.get(session.realTitle)}.${session.realId}</div></li>
                     <li><a href="${createLink(uri: '/home/logout')}">退出</a></li>
                 </g:if>
                 <g:else>
