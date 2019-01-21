@@ -16,7 +16,16 @@ $(function () {
 function countTeamManageA(title) {
     console.info("统计数据...");
     var ids = loadAllDisplayTitleIdA(tabList4TeamManageA);
-    total = ajaxCalculate("operation4TeamManageA/count?key=" + title);
+    switch (title) {
+        case "相关团队":
+            total = ajaxCalculate("operation4TeamManageA/count?key=" + title + "&currentThing=" + ids[0]);
+            break
+        case "相关队员":
+            total = ajaxCalculate("operation4TeamManageA/count?key=" + title + "&currentTeam=" + ids[1]);
+            break
+        default:
+            total = ajaxCalculate("operation4TeamManageA/count?key=" + title);
+    }
     return total
 }
 
@@ -24,27 +33,59 @@ function loadTeamManageA(title, page, pageSize) {
     console.info("调入数据..." + title);
     var params = getParams(page, pageSize);    //getParams必须是放在最最前面！！
     var ids = reflashDisplayTitleA(operation4TeamManageAUl, tabList4TeamManageA);
-    ajaxRun("operation4TeamManageA/list" + params + "&key=" + title, 0, "list" + title + "Div");
+    switch (title) {
+        case "相关团队":
+            ajaxRun("operation4TeamManageA/list" + params + "&key=" + title + "&currentThing=" + ids[0], 0, "list" + title + "Div");
+            break
+        case "相关队员":
+            ajaxRun("operation4TeamManageA/list" + params + "&key=" + title + "&currentTeam=" + ids[1], 0, "list" + title + "Div");
+            break
+        default:
+            ajaxRun("operation4TeamManageA/list" + params + "&key=" + title, 0, "list" + title + "Div");
+    }
 }
 
-function checkMembers(id) {
-    $.cookie("currentKey" + "相关团队", id);
-    $("#churrentKey" + "相关团队").html(id);
+function disband(id) {
+    ajaxExecute("operation4TeamManageA/disband/" + id)
+    location.reload();
+}
+
+function dismiss(id) {
+    var ids = reflashDisplayTitleA(operation4TeamManageAUl, tabList4TeamManageA);
+    ajaxExecute("operation4TeamManageA/dismiss/?person=" + id + "&currentTeam=" + ids[1])
+    location.reload();
+}
+
+function quitTeam(id) {
+    ajaxExecute("operation4TeamManageA/quitTeam/" + id);
+    operation4TeamManageADiv.tabs("select", "相关队员");
+    location.reload();
+}
+
+function joinTeam(id) {
+    ajaxExecute("operation4TeamManageA/joinTeam/" + id)
+    selectCurrentItem(id)
     operation4TeamManageADiv.tabs("select", "相关队员");
 }
 
-function selectAndJoinTeam(id) {
-    $.cookie("currentKey" + "可选题目", id);
-    $("#churrentKey" + "可选题目").html(id);
-    console.info("查看：" + id + "团队。")
+function createTeam(id) {
+    console.info("创建团队...");
+    selectCurrentItem(id)
+    ajaxExecute("operation4TeamManageA/createTeam/" + id)
     operation4TeamManageADiv.tabs("select", "相关团队");
 }
 
-function selectAndCreateTeam(id) {
-    $.cookie("currentKey" + "可选题目", id);
-    $("#churrentKey" + "可选题目").html(id);
-    console.info("创建：" + id + "团队。")
+function listTeam(id) {
+    selectCurrentItem(id)
     operation4TeamManageADiv.tabs("select", "相关团队");
-    ajaxExecute("operation4TeamManageA/selectAndCreateTeam/" + id);
-    location.reload();
+}
+
+function selectCurrentItem(id) {
+    var title = getCurrentTabTitle(operation4TeamManageADiv)
+    $.cookie("currentKey" + title, id);
+}
+
+function listMembers(id) {
+    selectCurrentItem(id)
+    operation4TeamManageADiv.tabs("select", "相关队员");
 }

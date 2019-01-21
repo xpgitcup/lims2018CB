@@ -15,6 +15,7 @@ class Operation4ThingController {
     def courseService
     def projectService
     def queryStatementService
+    def commonQueryService
 
     def importFromFile() {
         println("导入...${params}")
@@ -90,7 +91,7 @@ class Operation4ThingController {
 
     def list() {
         println("${params}")
-        def (String view, List objectList) = listFunction(params)
+        def (String view, List objectList) = commonQueryService.listFunction(params)
         if (request.xhr) {
             render(template: view, model: [objectList: objectList])
         } else {
@@ -98,47 +99,14 @@ class Operation4ThingController {
         }
     }
 
-    private List listFunction(params) {
-        def keyString = "${params.controller}.${params.action}.${params.key}"
-        def view = "list"
-        def objectList
-        def hql = QueryStatement.findByKeyString(keyString)
-        if (hql) {
-            view = hql.viewName
-            def ps = [:]
-            ps.offset = params.offset
-            ps.max = params.max
-            objectList = Person.executeQuery(hql.hql, ps)
-        } else {
-            def nq = new QueryStatement(keyString: keyString);
-            queryStatementService.save(nq)
-            flash.message = "功能尚未实现!"
-        }
-        [view, objectList]
-    }
-
     def count() {
-        Object count = countFunction(params)
+        Object count = commonQueryService.countFunction(params)
         def result = [count: count]
         if (request.xhr) {
             render result as JSON
         } else {
             result
         }
-    }
-
-    private Object countFunction(params) {
-        def keyString = "${params.controller}.${params.action}.${params.key}"
-        def count = 0
-        def hql = QueryStatement.findByKeyString(keyString)
-        if (hql) {
-            count = Person.executeQuery(hql.hql)
-        } else {
-            def nq = new QueryStatement(keyString: keyString);
-            queryStatementService.save(nq)
-            flash.message = "功能尚未实现!"
-        }
-        count
     }
 
     def delete(Long id) {

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50722
 File Encoding         : 65001
 
-Date: 2019-01-05 16:26:44
+Date: 2019-01-21 14:53:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,7 +26,7 @@ CREATE TABLE `system_attribute` (
   PRIMARY KEY (`id`),
   KEY `FKa8ygck6uvyk4a6bb7ywe573xp` (`up_attribute_id`),
   CONSTRAINT `FKa8ygck6uvyk4a6bb7ywe573xp` FOREIGN KEY (`up_attribute_id`) REFERENCES `system_attribute` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of system_attribute
@@ -45,3 +45,4 @@ INSERT INTO `system_attribute` VALUES ('11', '0', '教师服务', '8');
 INSERT INTO `system_attribute` VALUES ('12', '0', '学生服务', '9');
 INSERT INTO `system_attribute` VALUES ('13', '0', '系统维护', '9');
 INSERT INTO `system_attribute` VALUES ('14', '0', '系统维护', '8');
+INSERT INTO `system_attribute` VALUES ('15', '0', '底层管理', '8');

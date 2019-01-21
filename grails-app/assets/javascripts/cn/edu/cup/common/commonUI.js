@@ -267,6 +267,7 @@ function configPaginationParams4TabPage(title, firstPageNumber, aCountFunction, 
         pageNumber: firstPageNumber,
         onSelectPage: function (pageNumber, pageSize) {
             console.info("setupPaginationParams4TabPage: " + title)
+            $.cookie("currentPage" + title, pageNumber);     //记录当前页面
             loadFunction(title, pageNumber, pageSize);
         }
     })
@@ -298,16 +299,16 @@ function setupTabPageParams(tabsName, aCountFunction, aLoadFunction) {
 
     if (tabsDiv.tabs("tabs").length < 2) {
         console.info("只有一个标签啊...")  //好像不成功！
-        //var cPage = readCookie("currentPage" + defaultTab, 1);
-        //loadFunction(defaultTab, cPage, pageSize);
     }
 
     // 打开缺省的标签
     tabsDiv.tabs("select", currentTab);
 
-    var tab = tabsDiv.tabs('getTab', "虚拟").panel('options').tab; //title替换成tab的title
-    //tab.show();  // 显示
-    tab.hide(); // 隐藏
+    if (tabsDiv.tabs("exists", "虚拟")) {
+        var tab = tabsDiv.tabs('getTab', "虚拟").panel('options').tab; //title替换成tab的title
+        //tab.show();  // 显示
+        tab.hide(); // 隐藏
+    }
 }
 
 /*

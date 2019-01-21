@@ -11,52 +11,89 @@ class CommonQueryService {
     def queryStatementService
 
     List listFunction(params) {
-        def keyString = "${params.controller}.${params.action}.${params.key}"
+        def keyString = generateKeyString(params)
         def view = "list"
+        def message = ""
         def objectList
         def queryStatement = QueryStatement.findByKeyString(keyString)
         def pl = []
         if (queryStatement) {
-            if (queryStatement.paramsList) {
-                pl.addAll(queryStatement.paramsList.split(","))
+            if (queryStatement.hql || queryStatement.viewName) {
+                if (queryStatement.paramsList) {
+                    pl.addAll(queryStatement.paramsList.split(","))
+                }
+                view = queryStatement.viewName
+                def ps = [:]
+                ps.offset = params.offset
+                ps.max = params.max
+                pl.each { e ->
+                    ps.put(e, params.get(e))
+                }
+                println("list 参数：${ps}")
+                objectList = QueryStatement.executeQuery(queryStatement.hql, ps)
+            } else {
+                message = "请完善list查询."
             }
-            view = queryStatement.viewName
-            def ps = [:]
-            ps.offset = params.offset
-            ps.max = params.max
-            pl.each { e ->
-                ps.put(e, params.get(e))
-            }
-            println("list 参数：${ps}")
-            objectList = QueryStatement.executeQuery(queryStatement.hql, ps)
         } else {
             def nq = new QueryStatement(keyString: keyString);
             queryStatementService.save(nq)
         }
-        return [view, objectList]
+        return [view, objectList, message]
     }
 
     Object countFunction(params) {
-        def keyString = "${params.controller}.${params.action}.${params.key}"
+        def keyString = generateKeyString(params)
         def count = 0
+        def message = ""
         def queryStatement = QueryStatement.findByKeyString(keyString)
         def pl = []
-        if (queryStatement.paramsList) {
-            pl.addAll(queryStatement.paramsList.split(","))
-        }
         if (queryStatement) {
-            def ps = [:]
-            pl.each { e ->
-                ps.put(e, params.get(e))
+            if (!queryStatement.hql.isEmpty()) {
+                if (queryStatement.paramsList) {
+                    pl.addAll(queryStatement.paramsList.split(","))
+                }
+                def ps = [:]
+                pl.each { e ->
+                    ps.put(e, params.get(e))
+                }
+                println("count 参数：${ps}")
+                count = QueryStatement.executeQuery(queryStatement.hql, ps)
+            } else {
+                message = "请完善count查询."
             }
-            println("count 参数：${ps}")
-            count = QueryStatement.executeQuery(queryStatement.hql, ps)
         } else {
             def nq = new QueryStatement(keyString: keyString);
             queryStatementService.save(nq)
             count = -1
         }
-        return count
+        return [count, message]
     }
+
+    private def generateKeyString(params) {
+        println("内部：${params}")
+        def keyString = ""
+        def exclude = ["offset", "max", "id", "format"]
+        def include = ["controller", "action", "key"]
+        params.keySet().sort().each { e ->
+            if (!exclude.contains(e)) {
+                if (include.contains(e)) {
+                    if (keyString.isEmpty()) {
+                        keyString += "${params.get(e)}"
+                    } else {
+                        keyString += ".${params.get(e)}"
+                    }
+                } else {
+                    if (keyString.isEmpty()) {
+                        keyString += "${e}"
+                    } else {
+                        keyString += ".${e}"
+                    }
+                }
+            }
+        }
+        println("Query ${keyString}")
+        keyString
+    }
+
 
 }

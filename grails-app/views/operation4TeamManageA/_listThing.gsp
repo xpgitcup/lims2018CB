@@ -20,7 +20,11 @@
         <tbody>
         <g:each in="${objectList}" var="item" status="i">
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                <td>${item.name}</td>
+                <td>
+                    ${item.name}
+                    <a href="javascript: createTeam(${item.id})">创建团队</a>
+                    <a href="javascript: listTeam(${item.id})">查看团队</a>
+                </td>
                 <td>${item.thingType}</td>
             </tr>
         </g:each>

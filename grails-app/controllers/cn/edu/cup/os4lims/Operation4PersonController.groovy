@@ -14,8 +14,8 @@ class Operation4PersonController {
     def commonService
     def studentService
     def teacherService
-    def queryStatementService
     def systemCommonService
+    def commonQueryService
 
     def removeFromSystemUserGrade() {
         def k = 0
@@ -159,7 +159,8 @@ class Operation4PersonController {
 
     def list() {
         println("${params}")
-        def (String view, List objectList) = listFunction(params)
+        def (String view, List objectList, String message) = commonQueryService.listFunction(params)
+        flash.message = message
         if (request.xhr) {
             render(template: view, model: [objectList: objectList])
         } else {
@@ -167,47 +168,15 @@ class Operation4PersonController {
         }
     }
 
-    private List listFunction(params) {
-        def keyString = "${params.controller}.${params.action}.${params.key}"
-        def view = "list"
-        def objectList
-        def hql = QueryStatement.findByKeyString(keyString)
-        if (hql) {
-            view = hql.viewName
-            def ps = [:]
-            ps.offset = params.offset
-            ps.max = params.max
-            objectList = Person.executeQuery(hql.hql, ps)
-        } else {
-            def nq = new QueryStatement(keyString: keyString);
-            queryStatementService.save(nq)
-            flash.message = "功能尚未实现!"
-        }
-        [view, objectList]
-    }
-
     def count() {
-        Object count = countFunction(params)
+        def (Object count, String message) = commonQueryService.countFunction(params)
+        flash.message = message
         def result = [count: count]
         if (request.xhr) {
             render result as JSON
         } else {
             result
         }
-    }
-
-    private Object countFunction(params) {
-        def keyString = "${params.controller}.${params.action}.${params.key}"
-        def count = 0
-        def hql = QueryStatement.findByKeyString(keyString)
-        if (hql) {
-            count = Person.executeQuery(hql.hql)
-        } else {
-            def nq = new QueryStatement(keyString: keyString);
-            queryStatementService.save(nq)
-            flash.message = "功能尚未实现!"
-        }
-        count
     }
 
     def delete(Long id) {
