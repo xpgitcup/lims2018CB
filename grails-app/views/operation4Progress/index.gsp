@@ -22,23 +22,15 @@
         </g:else>
     </g:else>
 <!-- end 实现可定制的布局 -->
-    <g:set var="entityName" value="QueryStatement"/>
+    <g:set var="entityName" value="Progress"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>${entityName}维护</title>
     <asset:javascript src="cn/edu/cup/os4lims/${entityName}.js"/>
 </head>
 
 <body>
-
 <div class="nav">
-    <ul id="operation4QueryStatementUl">
-        <li></li>
-        <li>
-            <a href="operation4QueryStatement/exportToJsonFile" class="save">导出Json文件</a>
-        </li>
-        <li>
-            <a href="operation4QueryStatement/importFromJsonFile" class="create">从Json文件导入</a>
-        </li>
+    <ul id="operation4ProgressUl">
     </ul>
 </div>
 
@@ -46,7 +38,7 @@
     <div class="message" role="status">${flash.message}</div>
 </g:if>
 
-<div id="operation4QueryStatementDiv" class="easyui-tabs">
+<div id="operation4ProgressDiv" class="easyui-tabs">
 </div>
 </body>
 </html>

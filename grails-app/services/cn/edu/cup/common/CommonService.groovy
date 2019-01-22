@@ -121,6 +121,11 @@ class CommonService {
     * 菜单配置文件
     * */
 
+    def queryStatementConfigFileName() {
+        def fileName = "${webRootPath}systemConfig/queryStatement.json"
+        return fileName
+    }
+
     def menuConfigFileName() {
         def fileName = "${webRootPath}systemConfig/systemMenu.json"
         return fileName

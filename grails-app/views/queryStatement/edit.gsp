@@ -59,6 +59,10 @@
                 <td><g:textField name="hql" value="${queryStatement.hql}" style="width: 80em"></g:textField></td>
             </tr>
             <tr>
+                <td>SQL查询语句</td>
+                <td><g:textField name="sqlString" value="${queryStatement.sqlString}" style="width: 80em"></g:textField></td>
+            </tr>
+            <tr>
                 <td>参数</td>
                 <td><g:textField name="paramsList" value="${queryStatement.paramsList}" style="width: 80em"></g:textField></td>
             </tr>

@@ -99,11 +99,6 @@ class Operation4TeamManageAController {
         }
     }
 
-    /*
-    * 根据身份确定事情
-    * 相关任务类型，如果任务类型不是叶子，继续向下搜索到叶子
-    * */
-
     def count() {
         prepareParams()
         def (count, message) = commonQueryService.countFunction(params)

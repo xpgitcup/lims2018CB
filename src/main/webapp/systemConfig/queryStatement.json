@@ -1,0 +1,89 @@
+[
+  {
+    "viewName": "listQueryStatement",
+    "hql": "from QueryStatement queryStatement",
+    "keyString": "list.operation4QueryStatement.查询配置"
+  },
+  {
+    "keyString": "count.operation4QueryStatement.查询配置",
+    "hql": "select count(*) from QueryStatement queryStatement"
+  },
+  {
+    "keyString": "list.operation4Person.教师",
+    "hql": "from Teacher teacher",
+    "viewName": "listTeacher"
+  },
+  {
+    "hql": "select count(*) from Teacher teacher",
+    "keyString": "count.operation4Person.教师"
+  },
+  {
+    "hql": "from Project project",
+    "keyString": "list.operation4Thing.科研",
+    "viewName": "listProject"
+  },
+  {
+    "hql": "select count(*) from Project project",
+    "keyString": "count.operation4Thing.科研"
+  },
+  {
+    "viewName": "listCourse",
+    "hql": "from Course course",
+    "keyString": "list.operation4Thing.教学"
+  },
+  {
+    "hql": "select count(*) from Course course",
+    "keyString": "count.operation4Thing.教学"
+  },
+  {
+    "viewName": "listStudent",
+    "hql": "from Student student",
+    "keyString": "list.operation4Person.学生"
+  },
+  {
+    "keyString": "count.operation4Person.学生",
+    "hql": "select count(*) from Student student"
+  },
+  {
+    "keyString": "list.operation4Person.专业",
+    "viewName": "listMajor",
+    "hql": "from Major major"
+  },
+  {
+    "keyString": "count.operation4Person.专业",
+    "hql": "select count(*) from Major major"
+  },
+  {
+    "paramsList": "list",
+    "keyString": "list.operation4TeamManageA.可选题目.list",
+    "viewName": "listThing",
+    "hql": "from Thing thing where thing.thingType in :list"
+  },
+  {
+    "paramsList": "list",
+    "hql": "select count(*) from Thing thing where thing.thingType in :list",
+    "keyString": "count.operation4TeamManageA.可选题目.list"
+  },
+  {
+    "hql": "select count(*) from Team team where team.thing=:currentThing",
+    "paramsList": "currentThing",
+    "keyString": "count.operation4TeamManageA.currentThing.相关团队.list"
+  },
+  {
+    "paramsList": "currentThing",
+    "keyString": "list.operation4TeamManageA.currentThing.相关团队.list",
+    "hql": "from Team team where team.thing=:currentThing",
+    "viewName": "listTeam"
+  },
+  {
+    "hql": "from Team team where team=:currentTeam",
+    "keyString": "list.operation4TeamManageA.currentTeam.相关队员.list",
+    "viewName": "listMember",
+    "paramsList": "currentTeam"
+  },
+  {
+    "hql": "select count(*) from Team  team where team=:currentTeam",
+    "paramsList": "currentTeam",
+    "keyString": "count.operation4TeamManageA.currentTeam.相关队员.list"
+  }
+]
