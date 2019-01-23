@@ -30,7 +30,7 @@
         <thead>
         <th>关键字</th>
         <th>HQL</th>
-        <th>SQL</th>
+        <th>isSQL</th>
         <th>View</th>
         <th>参数</th>
         <th>注释</th>
@@ -43,7 +43,7 @@
                     <a href="operation4QueryStatement/edit/${item.id}">编辑</a>
                 </td>
                 <td>${item.hql}</td>
-                <td>${item.sqlString}</td>
+                <td>${item.isSQL}</td>
                 <td>${item.viewName}</td>
                 <td>${item.paramsList}</td>
                 <td>${item.discription}</td>

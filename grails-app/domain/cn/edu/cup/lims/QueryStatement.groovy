@@ -4,7 +4,7 @@ class QueryStatement {
 
     String keyString
     String hql
-    String sqlString
+    boolean isSQL = false
     String viewName
     String paramsList
     String discription
@@ -12,7 +12,7 @@ class QueryStatement {
     static constraints = {
         keyString(unique: true)
         hql(nullable: true)
-        sqlString(nullable: true)
+        isSQL(nullable: true)
         viewName(nullable: true)
         paramsList(nullable: true)
         discription(nullable: true)
