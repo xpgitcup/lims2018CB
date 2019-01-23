@@ -1,6 +1,6 @@
 var operation4ProgressDiv;
 var operation4ProgressUl;
-var tabList4Progress = ["相关任务","查看进度"];
+var tabList4Progress = ["我领导的","我参与的","进度查看","反馈信息"];
 
 
 $(function () {

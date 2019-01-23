@@ -1,16 +1,33 @@
 package cn.edu.cup.os4lims
 
 import cn.edu.cup.lims.QueryStatement
+import cn.edu.cup.lims.QueryStatementController
 import grails.converters.JSON
+import grails.validation.ValidationException
 
-class Operation4QueryStatementController {
+import static org.springframework.http.HttpStatus.OK
+
+class Operation4QueryStatementController extends QueryStatementController {
 
     def commonQueryService
     def commonService
-    def queryStatementService
+
+    def update(QueryStatement queryStatement) {
+        if (queryStatement == null) {
+            notFound()
+            return
+        }
+
+        try {
+            queryStatementService.save(queryStatement)
+            flash.message = message(code: 'default.updated.message', args: [message(code: 'queryStatement.label', default: 'QueryStatement'), queryStatement.id])
+        } catch (ValidationException e) {
+            flash.message = queryStatement.errors
+        }
+        redirect(action: "index")
+    }
 
     def importFromJsonFile() {
-
         def fileName = commonService.queryStatementConfigFileName()
         def jsonFile = new File(fileName)
         if (jsonFile.exists()) {

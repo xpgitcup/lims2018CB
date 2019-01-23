@@ -7,6 +7,7 @@ class QueryStatement {
     String sqlString
     String viewName
     String paramsList
+    String discription
 
     static constraints = {
         keyString(unique: true)
@@ -14,6 +15,7 @@ class QueryStatement {
         sqlString(nullable: true)
         viewName(nullable: true)
         paramsList(nullable: true)
+        discription(nullable: true)
     }
 
     String toString() {
