@@ -48,7 +48,8 @@ class CommonQueryService {
         def queryStatement = QueryStatement.findByKeyString(keyString)
         def pl = []
         if (queryStatement) {
-            if (!queryStatement.hql.isEmpty()) {
+            println("统计语句； ${queryStatement.hql}")
+            if (queryStatement.hql) {
                 if (queryStatement.paramsList) {
                     pl.addAll(queryStatement.paramsList.split(","))
                 }

@@ -25,7 +25,7 @@
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-    <!--f:table collection="${objectList}"/-->
+<!--f:table collection="${objectList}"/-->
     <table>
         <thead>
         <th>关键字</th>
@@ -33,20 +33,22 @@
         <th>isSQL</th>
         <th>View</th>
         <th>参数</th>
-        <th>注释</th>
         </thead>
         <tbody>
         <g:each in="${objectList}" var="item" status="i">
+            <tr class="${(i % 2 == 0) ? 'even' : 'odd'}">
+                <td>说明</td>
+                <td>${item.discription}</td>
+                <td>${item.isSQL}</td>
+                <td>${item.viewName}</td>
+                <td>${item.paramsList}</td>
+            </tr>
             <tr class="${(i % 2 == 0) ? 'even' : 'odd'}">
                 <td>
                     ${item.keyString}
                     <a href="operation4QueryStatement/edit/${item.id}">编辑</a>
                 </td>
-                <td>${item.hql}</td>
-                <td>${item.isSQL}</td>
-                <td>${item.viewName}</td>
-                <td>${item.paramsList}</td>
-                <td>${item.discription}</td>
+                <td colspan="">${item.hql}</td>
             </tr>
         </g:each>
         </tbody>

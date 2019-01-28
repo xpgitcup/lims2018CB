@@ -1,12 +1,25 @@
 package cn.edu.cup.os4lims
 
+import cn.edu.cup.lims.Person
 import grails.converters.JSON
 
 class Operation4ProgressController {
 
     def commonQueryService
 
+    def list() {
+        prepareParams()
+        def (String view, List objectList, String message) = commonQueryService.listFunction(params)
+        flash.message = message
+        if (request.xhr) {
+            render(template: view, model: [objectList: objectList])
+        } else {
+            respond objectList
+        }
+    }
+
     def count() {
+        prepareParams()
         def (count, message) = commonQueryService.countFunction(params)
         flash.message = message
         println("统计结果：${count}")
@@ -20,6 +33,11 @@ class Operation4ProgressController {
         } else {
             result
         }
+    }
+
+    private void prepareParams() {
+        def myself = Person.get(session.realId)
+        params.myself = myself
     }
 
     def index() { }

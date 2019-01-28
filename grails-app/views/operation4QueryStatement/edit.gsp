@@ -56,7 +56,7 @@
             </tr>
             <tr>
                 <td>SQL查询语句</td>
-                <td><g:textField name="sqlString" value="${queryStatement.sqlString}" style="width: 80em"></g:textField></td>
+                <td><g:textField name="isSQL" value="${queryStatement.isSQL}"></g:textField></td>
             </tr>
             <tr>
                 <td>参数</td>

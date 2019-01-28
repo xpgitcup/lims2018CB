@@ -62,6 +62,7 @@ class Operation4TeamManageAController {
             if (!Team.findAllByThingAndLeader(thing, leader)) {
                 def team = new Team(leader: leader, thing: thing)
                 teamService.save(team)
+                println("create ok ${team}")
             } else {
                 flash.message = "不能重复！"
             }
