@@ -9,6 +9,7 @@ import grails.gorm.transactions.Transactional
 class CommonQueryService {
 
     def queryStatementService
+    def dataSource
 
     List listFunction(params) {
         def keyString = generateKeyString(params)
@@ -58,7 +59,12 @@ class CommonQueryService {
                     ps.put(e, params.get(e))
                 }
                 println("count 参数：${ps}")
-                count = QueryStatement.executeQuery(queryStatement.hql, ps)
+                if (queryStatement.isSQL) {
+                    def db = new groovy.sql.Sql(dataSource)
+                    count = db.execute(ps, queryStatement.hql)
+                } else {
+                    count = QueryStatement.executeQuery(queryStatement.hql, ps)
+                }
             } else {
                 message = "请完善count查询."
             }

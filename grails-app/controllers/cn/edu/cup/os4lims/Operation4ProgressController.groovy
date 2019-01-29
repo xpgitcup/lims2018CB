@@ -37,7 +37,13 @@ class Operation4ProgressController {
 
     private void prepareParams() {
         def myself = Person.get(session.realId)
-        params.myself = myself
+        switch (params.key) {
+            case "":
+                break
+                params.myself = myself.id
+            default:
+                params.myself = myself
+        }
     }
 
     def index() { }
