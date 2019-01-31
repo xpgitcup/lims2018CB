@@ -1,6 +1,7 @@
 package cn.edu.cup.os4lims
 
 import cn.edu.cup.lims.Person
+import cn.edu.cup.lims.Team
 import grails.converters.JSON
 
 class Operation4ProgressController {
@@ -8,8 +9,18 @@ class Operation4ProgressController {
     def commonQueryService
 
     def list() {
+        def objectList = []
         prepareParams()
-        def (String view, List objectList, String message) = commonQueryService.listFunction(params)
+        def (String view, List tempList, String message) = commonQueryService.listFunction(params)
+        switch (params.key) {
+            case "我参与的":
+                tempList.each { e ->
+                    objectList.add(Team.get(e.team_members_id))
+                }
+                break
+            default:
+                objectList.addAll(tempList)
+        }
         flash.message = message
         if (request.xhr) {
             render(template: view, model: [objectList: objectList])
@@ -38,13 +49,13 @@ class Operation4ProgressController {
     private void prepareParams() {
         def myself = Person.get(session.realId)
         switch (params.key) {
-            case "":
-                break
+            case "我参与的":
                 params.myself = myself.id
+                break
             default:
                 params.myself = myself
         }
     }
 
-    def index() { }
+    def index() {}
 }

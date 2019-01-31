@@ -1,11 +1,11 @@
 var operation4ProgressDiv;
 var operation4ProgressUl;
 var tabList4Progress = ["我领导的","我参与的","进度查看","反馈信息"];
-
+var progressPageSize = 5
 
 $(function () {
     console.info("任务管理...");
-
+    pageSize = progressPageSize;
     operation4ProgressUl = $("#operation4ProgressUl");
     operation4ProgressDiv = $("#operation4ProgressDiv");
     setupDisplayUl(operation4ProgressUl, tabList4Progress)
