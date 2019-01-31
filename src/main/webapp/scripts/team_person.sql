@@ -2,19 +2,18 @@
 Navicat MySQL Data Transfer
 
 Source Server         : sample
-Source Server Version : 50722
+Source Server Version : 50725
 Source Host           : localhost:3306
 Source Database       : lims2018bdb
 
 Target Server Type    : MYSQL
-Target Server Version : 50722
+Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-01-25 22:32:51
+Date: 2019-01-31 17:56:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
 -- ----------------------------
 -- Table structure for `team_person`
 -- ----------------------------
@@ -35,3 +34,7 @@ INSERT INTO `team_person` VALUES ('4', '1');
 INSERT INTO `team_person` VALUES ('1', '1');
 INSERT INTO `team_person` VALUES ('3', '1');
 INSERT INTO `team_person` VALUES ('2', '1');
+INSERT INTO `team_person` VALUES ('5', '2');
+INSERT INTO `team_person` VALUES ('6', '2');
+INSERT INTO `team_person` VALUES ('7', '2');
+INSERT INTO `team_person` VALUES ('8', '2');

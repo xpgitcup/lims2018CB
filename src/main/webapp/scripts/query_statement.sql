@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-01-30 18:08:56
+Date: 2019-01-31 17:55:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -58,6 +58,6 @@ INSERT INTO `query_statement` VALUES ('21', '0', 'currentTeam', '统计当前团
 INSERT INTO `query_statement` VALUES ('22', '0', 'currentProgress', '统计当前反馈信息，参数是当前进度', 'select count(*) from Evaluate evaluate where evaluate.progress=:currentProgress', '\0', 'count.operation4Progress.反馈信息', null);
 INSERT INTO `query_statement` VALUES ('23', '0', 'myself', '显示我领导的团队', 'from Team team where team.leader=:myself', '\0', 'list.operation4Progress.我领导的.myself', 'listTeam');
 INSERT INTO `query_statement` VALUES ('24', '0', 'myself', '统计我领导的团队，参数是当前用户--自己', 'select count(*) from Team team where team.leader=:myself', '\0', 'count.operation4Progress.我领导的.myself', null);
-INSERT INTO `query_statement` VALUES ('25', '1', 'myself', '显示我参与的团队', 'from Team team where \'in\'( :myself, team.members)', '\0', 'list.operation4Progress.我参与的.myself', 'listTeam');
-INSERT INTO `query_statement` VALUES ('26', '0', 'myself', '统计我参与的团队', 'select count(*) from Team team where \'in\'(:myself, team.members)', '\0', 'count.operation4Progress.我参与的.myself', null);
-INSERT INTO `query_statement` VALUES ('27', '0', 'myself', '显示我参与的团队', 'from Team team where \'in\'(:myself, team.members)', '\0', 'list.operation4Progress.我参与的', 'listTeam');
+INSERT INTO `query_statement` VALUES ('25', '2', 'myself', '显示我参与的团队', 'SELECT  team_person.team_members_id FROM team_person WHERE team_person.person_id =:myself', '', 'list.operation4Progress.我参与的.myself', 'listTeam');
+INSERT INTO `query_statement` VALUES ('26', '1', 'myself', '统计我参与的团队', 'select count(*) from team_person where person_id=:myself', '', 'count.operation4Progress.我参与的.myself', null);
+INSERT INTO `query_statement` VALUES ('27', '1', 'myself', '显示我参与的团队', 'from Team team where \'in\'(:myself, team.members)', '', 'list.operation4Progress.我参与的', 'listTeam');
